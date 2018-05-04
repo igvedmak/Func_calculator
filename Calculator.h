@@ -37,15 +37,15 @@ private:
 	void viewHelp();
 	void maxFunctionsInput();
 	void checkMaximum();
-	void checkRange(double);
-	void checkRange(double, double);
-	void checkInput(string);
-	void checkInput(string, string);
-	void oneArgument(string);
-	void zeroArgument(istringstream&, string);
-	void eval(string, string);
+	void checkRange(const double);
+	void checkRange(const double, const double);
+	void checkInput(const string);
+	void checkInput(const string, const string);
+	void oneArgument(const string);
+	void zeroArgument(istringstream&, const string);
+	void eval();
 	void read(istringstream&);
-	void resize(int);
+	void resize(const int);
 	template <class T>
 	void binary(int, double);
 	template <class T>

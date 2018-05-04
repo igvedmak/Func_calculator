@@ -75,27 +75,27 @@ void Calculator::checkMaximum() {
 	if (m_expressions.size() == m_maxFunctionsInt)
 		throw out_of_range(REACHED);
 }
-void Calculator::checkRange(double index) {
+void Calculator::checkRange(const double index) {
 	if (index < 0 || m_expressions.size() <= index)
 		throw out_of_range(OUT_RANGE);
 }
-void Calculator::checkRange(double index, double index2) {
+void Calculator::checkRange(const double index, const double index2) {
 	if (index < 0 || m_expressions.size() <= index)
 		throw out_of_range(OUT_RANGE);
 	checkRange(index2);
 }
-void Calculator::checkInput(string val) {
+void Calculator::checkInput(const string val) {
 	if (isalpha(val[0]))
 		throwSignBad();
 	val1 = stoi(val);
 }
-void Calculator::checkInput(string val, string val2) {
+void Calculator::checkInput(const string val, const string val2) {
 	if (isalpha(val[0]) || isalpha(val2[0]) || stoi(val) < 0 || stoi(val2) < 0)
 		throwSignBad();
 	checkInput(val);
 	val2Dou = stoi(val2);
 }
-void Calculator::oneArgument(string commandName) {
+void Calculator::oneArgument(const string commandName) {
 	if (commandName == "help")
 		viewHelp();
 	else if (commandName == "exit")
@@ -103,7 +103,7 @@ void Calculator::oneArgument(string commandName) {
 	else if (commandName != "help" && commandName != "exit")
 		throw domain_error(WRONG);
 }
-void Calculator::zeroArgument(istringstream &cmd,string commandName) {
+void Calculator::zeroArgument(istringstream &cmd,const string commandName) {
 	try {
 		oneArgument(commandName);
 	}
@@ -111,7 +111,7 @@ void Calculator::zeroArgument(istringstream &cmd,string commandName) {
 		cout << e.what() << endl;
 	}
 }
-void Calculator::resize(int val1) {
+void Calculator::resize(const int val1) {
 	if (val1 < m_maxFunctionsInt) {
 		string errorM = MUST_BE + to_string(m_maxFunctionsInt);
 		string chooise;
@@ -144,7 +144,8 @@ int Calculator::checkEnum(const string command) {
 	else
 		return 3;
 }
-void Calculator::eval(string val, string val2) {
+void Calculator::eval() {
+	checkRange(val1);
 	string value = to_string(val2Dou);
 	value.erase(value.find_last_not_of('0') + 2, string::npos);
 	m_expressions[val1]->print(value);
@@ -166,7 +167,7 @@ bool Calculator::commandHandler(string command)
 			cmd >> val2;
 			checkInput(val, val2);
 			if (commandName == "eval")
-				eval(val, val2);
+				eval();
 			else {
 				checkRange(val1, val2Dou);
 				if (commandName == "mul")
