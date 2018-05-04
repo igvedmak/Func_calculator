@@ -163,8 +163,7 @@ bool Calculator::commandHandler(string command)
 		{
 		case 0:
 			checkMaximum();
-			cmd >> val;
-			cmd >> val2;
+			cmd >> val >> val2;
 			checkInput(val, val2);
 			if (commandName == "eval")
 				eval();
@@ -184,8 +183,7 @@ bool Calculator::commandHandler(string command)
 			checkMaximum();
 			cmd >> val;
 			checkInput(val);
-			for (int i = 0; i < val1; i++)
-			{
+			for (int i = 0; i < val1; i++){
 				cmd >> tmpVal;
 				valuesForPoly.push_back(tmpVal);
 			}
