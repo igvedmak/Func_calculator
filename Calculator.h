@@ -16,7 +16,7 @@ using namespace std;
 
 class FileLineException : public exception {
 public:
-	FileLineException(int lineNumber) : m_error("Error at file line: " + to_string(lineNumber)) {}
+	FileLineException(int lineNumber) : m_error(ERROR + to_string(lineNumber)) {}
 	const char * what() const noexcept {
 		return  m_error.c_str();
 	}
