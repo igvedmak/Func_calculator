@@ -269,27 +269,24 @@ void Calculator::read(istringstream& cmd) {
 			m_fileLineCounter = 1;
 		}
 		catch (ifstream::failure e) {
-			throw invalid_argument("Can't open file");
+			throw invalid_argument(CANT_OPEN);
 		}
 	}
 
 	while (!m_file.eof() && getline(m_file, line)) {
 		if (!line.empty()) {
 			if (!commandHandler(line)) {
-				cout << "Error at file line: " << m_fileLineCounter << "\n";
-				string chooise;
+				cout << ERROR << m_fileLineCounter << endl;
 				while (chooise != "yes" && chooise != "no") {
-					cout << "Do you want to continue (no ,yes): ";
+					cout << DO;
 					cin >> chooise;
 					if (chooise == "no") {
 						m_expressions = lastFunctions;
-						m_file.close();
-						throw FileLineException(m_fileLineCounter);
+						closefile(m_file, m_fileLineCounter);
 					}
 					else {
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						m_file.close();
-						throw FileLineException(m_fileLineCounter);
+						closefile(m_file, m_fileLineCounter);
 					}
 				}
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -298,6 +295,10 @@ void Calculator::read(istringstream& cmd) {
 		m_fileLineCounter++;
 	}
 	m_file.close();
+}
+void closefile(ifstream & m_file, int m_fileLineCounter) {
+	m_file.close();
+	throw FileLineException(m_fileLineCounter);
 }
 
 

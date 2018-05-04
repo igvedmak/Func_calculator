@@ -21,6 +21,7 @@ using namespace std;
 #define EMPTY "Not have functions at all"
 #define CHOOSE ",Do you want to delete (no ,yes): "
 #define READ_OUT "The file contain much more function than your limit"
+#define CANT_OPEN "Can't open file"
 const string HELP = "eval(uate) num x - Evaluates function #num on x\n\
 poly(nomial) N c0 c1 ... cN - 1 - Creates a polynomial with N coefficients\n\
 rev(erse) num - Creates a polynomial with N coefficients in reverse order\n\
@@ -38,17 +39,19 @@ const char PLUS = '+',
 		NONE = ' ',
 		CARET = '^';
 const string VAR = "x",
-		LOG = "log",
-		LN = "ln(",
-		PREFIX = "(",
-		POSTFIX = ")",
-		SQRT = "sqrt(",
-		EQUAL = " = ",
-		COLON = ": ",
-		MAX_FUNC = "Enter maximun functions: ",
-		LIST = "This is the function list:",
-		PLZ_COM = "Please enter a command (\"help\" for command list):",
-	    MAX_FU = "Maximun functions is ";
+LOG = "log",
+LN = "ln(",
+PREFIX = "(",
+POSTFIX = ")",
+SQRT = "sqrt(",
+EQUAL = " = ",
+COLON = ": ",
+MAX_FUNC = "Enter maximun functions: ",
+LIST = "This is the function list:",
+PLZ_COM = "Please enter a command (\"help\" for command list):",
+MAX_FU = "Maximun functions is ",
+DO = "Do you want to continue (no ,yes): ",
+ERROR = "Error at file line: ";
 enum class commandName
 {
 	eval,	// eval(uate)

@@ -44,6 +44,7 @@ private:
 	void oneArgument(const string);
 	void zeroArgument(istringstream&, const string);
 	void eval();
+	void closefile(ifstream &, int);
 	void read(istringstream&);
 	void resize(const int);
 	template <class T>
@@ -52,7 +53,7 @@ private:
 	void binaryChange(int, double, string);
 	void throwSignBad();
 	void throwSignMin();
-	string line, path, m_maxFunctions, val, val2;
+	string line, path, m_maxFunctions, val, val2, chooise;
 	int m_maxFunctionsInt , val1, m_fileLineCounter = 0, tmpVal;
 	ifstream m_file;
 	double val2Dou;
