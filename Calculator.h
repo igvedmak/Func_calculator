@@ -43,6 +43,7 @@ private:
 	void checkInput(string, string);
 	void oneArgument(string);
 	void zeroArgument(istringstream&, string);
+	void eval(string, string);
 	void read(istringstream&);
 	void resize(int);
 	template <class T>

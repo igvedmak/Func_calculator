@@ -50,10 +50,8 @@ void Calculator::maxFunctionsInput() {
 			throwSignBad();
 	}
 	m_maxFunctionsInt = stoi(m_maxFunctions);
-	if (m_maxFunctionsInt < 2) {
-		string errorM = MUST_BE + to_string(m_expressions.size());
-		throw out_of_range(errorM);
-	}		
+	if (m_maxFunctionsInt < 2)
+		throwSignMin();	
 }
 void Calculator::throwSignBad() {
 	throw domain_error(BAD);
@@ -71,9 +69,7 @@ void Calculator::printList() const
 		m_expressions[i]->print(VAR);
 		cout << endl;
 	}
-	cout << PLZ_COM << endl;
-	cout << MAX_FU << m_maxFunctionsInt << endl;
-	cout << endl;
+	cout << PLZ_COM << endl << MAX_FU << m_maxFunctionsInt << endl << endl;
 }
 void Calculator::checkMaximum() {
 	if (m_expressions.size() == m_maxFunctionsInt)
@@ -148,6 +144,13 @@ int Calculator::checkEnum(const string command) {
 	else
 		return 3;
 }
+void Calculator::eval(string val, string val2) {
+	string value = to_string(val2Dou);
+	value.erase(value.find_last_not_of('0') + 2, string::npos);
+	m_expressions[val1]->print(value);
+	cout << EQUAL << m_expressions[val1]->eval(val2Dou) << endl;
+}
+
 bool Calculator::commandHandler(string command)
 {
 	istringstream cmd(command);
@@ -163,13 +166,7 @@ bool Calculator::commandHandler(string command)
 			cmd >> val2;
 			checkInput(val, val2);
 			if (commandName == "eval")
-			{
-				string value = to_string(val2Dou);
-				value.erase(value.find_last_not_of('0') + 2, string::npos);
-				m_expressions[val1]->print(value);
-				cout << EQUAL << m_expressions[val1]->eval(val2Dou) << endl;
-				//return false;
-			}
+				eval(val, val2);
 			else {
 				checkRange(val1, val2Dou);
 				if (commandName == "mul")
@@ -207,10 +204,8 @@ bool Calculator::commandHandler(string command)
 			if (commandName == "rev") {
 					checkMaximum();
 					auto poly = dynamic_pointer_cast<Poly>(m_expressions[val1]);
-					if (poly) {
+					if (poly)
 						m_expressions.push_back(poly->changeIt());
-						//return true;
-					}
 					else
 						throw domain_error(NOT_POLY);
 			}

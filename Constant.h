@@ -5,7 +5,6 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <string>
 #include <istream>
@@ -34,23 +33,22 @@ help - Prints this help screen\n\
 resize num - Resize the amount of functions which was allocated\n\
 read file.txt - reads function from the file\n\
 exit - Exits the program";
-const char PLUS = '+';
-const char MULT = '*';
-const char NONE = ' ';
-const char CARET = '^';
-const string VAR = "x";
-const string LOG = "log";
-const string LN = "ln(";
-const string PREFIX = "(";
-const string POSTFIX = ")";
-const string SQRT = "sqrt(";
-const string EQUAL = " = ";
-const string COLON = ": ";
-const string MAX_FUNC = "Enter maximun functions: ";
-const string LIST = "This is the function list:";
-const string PLZ_COM = "Please enter a command (\"help\" for command list):";
-const string MAX_FU = "Maximun functions is ";
-
+const char PLUS = '+',
+		MULT = '*',
+		NONE = ' ',
+		CARET = '^';
+const string VAR = "x",
+		LOG = "log",
+		LN = "ln(",
+		PREFIX = "(",
+		POSTFIX = ")",
+		SQRT = "sqrt(",
+		EQUAL = " = ",
+		COLON = ": ",
+		MAX_FUNC = "Enter maximun functions: ",
+		LIST = "This is the function list:",
+		PLZ_COM = "Please enter a command (\"help\" for command list):",
+	    MAX_FU = "Maximun functions is ";
 enum class commandName
 {
 	eval,	// eval(uate)
