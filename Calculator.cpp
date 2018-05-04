@@ -282,11 +282,13 @@ void Calculator::read(istringstream& cmd) {
 					cin >> chooise;
 					if (chooise == "no") {
 						m_expressions = lastFunctions;
-						closefile(m_file, m_fileLineCounter);
+						m_file.close();
+						throw FileLineException(m_fileLineCounter);
 					}
 					else {
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						closefile(m_file, m_fileLineCounter);
+						m_file.close();
+						throw FileLineException(m_fileLineCounter);
 					}
 				}
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -296,9 +298,6 @@ void Calculator::read(istringstream& cmd) {
 	}
 	m_file.close();
 }
-void closefile(ifstream & m_file, int m_fileLineCounter) {
-	m_file.close();
-	throw FileLineException(m_fileLineCounter);
-}
+
 
 

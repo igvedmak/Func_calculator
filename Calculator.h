@@ -44,7 +44,6 @@ private:
 	void oneArgument(const string);
 	void zeroArgument(istringstream&, const string);
 	void eval();
-	void closefile(ifstream &, int);
 	void read(istringstream&);
 	void resize(const int);
 	template <class T>
